@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="uu">
+
+    </ul>
+    <script>
+        var list = [{
+            name: "张三"
+        }, {
+            name: "王五"
+        }]
+       var uu=  document.getElementById("uu")
+       for(var i=0;i<list.length;i++){
+           let liList = document.createElement('li')
+           liList.className = 'll'
+           liList.innerText = list[i].name
+           uu.appendChild(liList)
+       }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="uu">
+
+    </ul>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
+    <script>
+        var list = [{
+            name: "张三",
+            age: 12
+        }, {
+            name: "王五",
+            age: 23
+        }]
+        // 循环遍历数组
+        var templateSter = `
+            <ul>
+                {{#list}}
+                 <li>
+                 
+                     <div class="hd"></div>
+                     <div class="bd">
+                         <p>姓名{{name}}</p>
+                         <p>年龄{{age}}</p>
+                     </div>
+                </li>
+                {{/list}}
+            </ul>
+            `
+        var mustacheStr = Mustache.render(templateSter, list)
+        document.getElementById("uu").innerHTML = mustacheStr
+
+        var templateStr2 = `
+            <h3>{{things}}</h3>
+        `
+        var obj = {
+            things: '我买东西了',
+            mood: "开心"
+        }
+        document.getElementById("uu").innerHTML = Mustache.render(templateStr2, obj)
+    </script>
+
+</body>
+
+</html>

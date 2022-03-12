@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var templateSter = '<h1>我{{thing}}</h1>'
+        var data = {
+            thing: '白菜',
+            money: 5,
+            mood: '白菜'
+        }
+        function render(templateSter, data) {
+            return templateSter.replace(/\{\{(\w+)\}\\/g, function (findStr, $1) {
+                return data[$1];
+            })
+        }
+        var result = render(templateSter, data)
+        console.log(result)
+    </script>
+
+</body>
+
+</html>
