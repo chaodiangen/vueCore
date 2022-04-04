@@ -11,11 +11,10 @@ methodsNeedChange.forEach(methodName => {
     const original = arrayPrototype[methodName]
 
     def(arrayMethods, methodName, function () {
-        console.log('嘿嘿')
         // 恢复原来功能
         const result = original.apply(this, arguments)
         // 把类数组对象编变为对象
-        const arr = [...arguments]
+        const args = [...arguments]
         /**
          *  把这个数组身上的__ob__取出来，__ob__已经添加了，为什么已经添加了？
          *  因为数据肯定不是最高层，比如obj.h属性是数组，obj不能是数组，第一次遍历obj这个对象
@@ -30,13 +29,17 @@ methodsNeedChange.forEach(methodName => {
                 inserted = arguments
                 break
             case 'splice':
-                inserted = arr.slice(2)
+                inserted = args.slice(2)
                 break
         }
         // 判断有没有要插入的新项，让新项也变为响应的
         if (inserted) {
             ob.observeArray(inserted)
         }
+        // 恢复原来的功能
+        console.log('array')
+        ob.dep.notify()
+        return original.apply(this, arguments)
     }, false)
 })
 

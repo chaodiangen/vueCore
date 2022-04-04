@@ -2,7 +2,6 @@ import Dep from './Dep'
 import observe from './observe'
 export default function defineReactive (data, key, val) {
     const dev = new Dep()
-    console.log('我是defineReactive', data, key)
     if (arguments.length === 2) {
         val = data[key]
     }
@@ -15,6 +14,10 @@ export default function defineReactive (data, key, val) {
         // 可以配置:比如可以delete
         configurable: true,
         get () {
+            // 如果现在处于依赖收集阶段
+            if(Dep.target){
+                dev.depend()
+            }
             return val
         },
         set (newValue) {

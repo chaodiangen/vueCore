@@ -5,7 +5,6 @@ import observe from './observe'
 import Dep from './Dep'
 export default class Observer {
     constructor(value) {
-        console.log('我是Observer', value)
         // 每一个Observer的实例身上都有一个dep
         this.dep = new Dep()
         // 给实例（this,一定要注意，构造函数中的this不是表示类本身，而是表示实例）

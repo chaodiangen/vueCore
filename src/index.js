@@ -1,5 +1,6 @@
 import observe from "./observe"
 import { arrayMethods } from './array'
+import Watcher from "./Wtacher"
 var obj = {}
 // Object.defineProperty(obj, 'a', {
 //     get () {
@@ -44,6 +45,11 @@ var obj1 = {
 
 observe(obj1)
 obj1.h.push('f')
-obj1.h.splice(2, 1, [0, 2])
-obj1.h =[1]
-console.log(obj1.h)
+obj1.h.splice(2, 1, [0, 2], 2)
+obj1.h = [1]
+obj1.h.push(34)
+obj1.e.f.g = '123'
+new Watcher(obj1, 'e.f.g', (value) => {
+    console.log('----', value)
+})
+obj1.e.f.g = '123'
